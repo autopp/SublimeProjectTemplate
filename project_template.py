@@ -29,7 +29,7 @@ class ProjectTemplateCommand(sublime_plugin.WindowCommand):
         if type(self.templates) != dict:
             sublime.error_message("The templates should be an object.")
             return
-        for name, template in self.templates.values():
+        for name, template in self.templates.items():
             if type(template) != dict:
                 msg = (
                     "Template '%s' is not a object.\n"
@@ -37,3 +37,15 @@ class ProjectTemplateCommand(sublime_plugin.WindowCommand):
                 ) % (name)
                 sublime.error_message(msg)
                 return
+
+        # Show quick panel for selecting template
+        self.template_names = list(self.templates.keys())
+        self.window.show_quick_panel(self.template_names,
+                                     self.on_selected)
+
+    def on_selected(self, idx):
+        if idx < 0:
+            # No template selected
+            return
+        template_name = self.template_names[idx]
+        print(template_name)

@@ -82,7 +82,7 @@ class ProjectTemplateCommand(sublime_plugin.WindowCommand):
     def create_project_file(self, path):
         try:
             with open(path, mode='w') as file:
-                json.dump(self.template, file, indent=4)
+                json.dump(self.template, file, indent=2)
                 print(file=file)
         except OSError:
             sublime.error_message("Cannot open %s." % path)

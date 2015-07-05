@@ -1,0 +1,13 @@
+[
+  {
+    "caption": "Preferences: ProjectTemplate Settings - User",
+    "command": "open_file",
+    "args": {
+      "file": "${packages}/User/ProjectTemplate.sublime-settings"
+    }
+  },
+  {
+    "caption": "ProjectTemplate: Create Project From the Template",
+    "command": "project_template"
+  }
+]

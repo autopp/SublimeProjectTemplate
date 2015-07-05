@@ -1,6 +1,7 @@
 import sublime
 import sublime_plugin
 import os.path
+import json
 
 
 class ProjectTemplateCommand(sublime_plugin.WindowCommand):
@@ -79,4 +80,12 @@ class ProjectTemplateCommand(sublime_plugin.WindowCommand):
         return self.window.folders()[0]
 
     def create_project_file(self, path):
-        print("called with " + path)
+        try:
+            with open(path, mode='w') as file:
+                json.dump(self.template, file, indent=4)
+                print(file=file)
+        except OSError:
+            sublime.error_message("Cannot open %s." % path)
+            return
+        else:
+            self.window.open_file(path)
